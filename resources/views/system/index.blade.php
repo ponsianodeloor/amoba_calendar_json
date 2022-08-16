@@ -1,2 +1,2 @@
 <?php
-vista del escritorio AdminLTE
+echo "vista del escritorio AdminLTE";
