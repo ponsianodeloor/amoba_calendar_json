@@ -294,7 +294,7 @@ return [
         ],
         [
             'text' => 'Calendario',
-            'url'  => 'calendar',
+            'url'  => 'fullcalendar',
             'icon' => 'fas fa-fw fa-calendar',
         ],
         [

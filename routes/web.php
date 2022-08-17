@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FullCalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,6 @@ Route::middleware([
     Route::get('/system', function () {
         return view('system.index');
     })->name('system');
+
+    Route::get('/fullcalendar', [FullCalendarController::class, 'index']);
 });

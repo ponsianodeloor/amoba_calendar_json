@@ -7,7 +7,9 @@
 @stop
 
 @section('content')
-    <p>Saludos Estimados funcionarios de Amoba.</p>
+    <p>Saludos Estimados funcionarios de Amoba. {{$fullcalendar}}</p>
+
+
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">
@@ -41,7 +43,7 @@
                 },
                 initialView: 'dayGridMonth',
                 events: {
-                    url: '/fullcalendar',
+                    url: 'http://localhost/laravel_dev/test_empresas/amoba/insumos/datos_test_amoba/events.json',
                     failure: function() {
                         document.getElementById('script-warning').style.display = 'block'
                     }
