@@ -31,7 +31,9 @@
 @section('js')
     <script>
         console.log('Hola');
+
         document.addEventListener('DOMContentLoaded', function() {
+            var FEED_URL = "{{url('/')}}" + "/fullcalendar";
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
@@ -41,11 +43,9 @@
                 },
                 initialView: 'dayGridMonth',
                 events: {
-                    url: '/fullcalendar',
-                    failure: function() {
-                        document.getElementById('script-warning').style.display = 'block'
-                    }
+                    url: FEED_URL
                 },
+
             });
             calendar.render();
         });

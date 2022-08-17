@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FullCalendarController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,24 @@ Route::middleware([
     })->name('system');
 
     Route::get('/fullcalendar', [FullCalendarController::class, 'index']);
+});
+
+Route::middleware(['cors'])->group(function () {
+    Route::post('/fullcalendar', [FullCalendarController::class, 'index']);
+});
+
+Route::get('/event-feed', function (Request $request) {
+    $eventOutput = [
+        [
+            'id' => 1,
+            'resourceId' => 'a',
+            'title' => 'Test',
+            'start' => '2022-08-11T00:00:00.000000Z',
+            'end' => '2020-08-11T02:00:00.000000Z',
+            'left' => $request->input('start'), //null
+            'right' => $request->input('end'), //null
+            'uri' => $request->path()
+        ]
+    ];
+    return json_encode($eventOutput);
 });

@@ -13,15 +13,21 @@ class FullCalendarController extends Controller
         $eventos = Event::select('title', 'start', 'end')->get();
         $data = Http::get('http://localhost/laravel_dev/test_empresas/amoba/insumos/datos_test_amoba/reservations.json')->json();
         $colleccion = collect($data)->flatten(1);
+        $id = 1;
         $fullcalendar = array();
         foreach ($colleccion as $row){
             $row['reservation_start'];
-            $fullcalendar[]= array('title'=> 'Reservation id: '.$row['id'], 'start'=>$row['reservation_start'], 'end'=>$row['reservation_end']);
+            $fullcalendar[]= array(
+                'id'=>$id++,
+                'resourceId'=>'a',
+                'title'=> 'Reservation id: '.$row['id'],
+                'start'=> substr($row['reservation_start'], 0,10) ,
+                'end'=>substr($row['reservation_end'], 0, 10),
+                'left'=>'null',
+                'right'=>'null',
+                'uri'=>'fullcalendar'
+            );
         }
-        $fullcalendar = json_encode($fullcalendar);
-        $reservations = $colleccion;
-        //$reservations = $reservations->all();
-
-        return view('system.fullcalendar', compact(['eventos', 'colleccion', 'fullcalendar']));
+        return json_encode($fullcalendar);
     }
 }
